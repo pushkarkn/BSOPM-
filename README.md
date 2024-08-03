@@ -1,9 +1,9 @@
-# 📦 Streamlit App Starter Kit 
+# Options Pricing Model 
 ```
 ⬆️ (Replace above with your app's name)
 ```
 
-Description of the app ...
+Black Scholes Option Pricing Model with Heatmaps 
 
 ## Demo App
 
