@@ -1,6 +1,6 @@
 # Options Pricing Model 
 ```
-⬆️ (Replace above with your app's name)
+
 ```
 
 Black Scholes Option Pricing Model with Heatmaps 
