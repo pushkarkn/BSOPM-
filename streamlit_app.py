@@ -14,5 +14,5 @@ with st.sidebar:
     v = st.number_input('Volatility (σ)')
     r = st.number_input('Risk-Free Interest Rate')
     
-    submit = st.form_submit_button()
+    submit = st.form_submit_button(Enter)
 
