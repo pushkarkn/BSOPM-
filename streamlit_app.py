@@ -36,10 +36,10 @@ def main():
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("CALL Value")
-        st.metric(label="Call Price", value=f"${call_price:.2f}")
+        st.metric(value=f"${call_price:.2f}")
     with col2:
         st.subheader("PUT Value")
-        st.metric(label="Put Price", value=f"${put_price:.2f}")
+        st.metric(value=f"${put_price:.2f}")
     
     with st.sidebar:
         st.header("PNL Calculation")
