@@ -16,9 +16,8 @@ def black_scholes(S, K, T, r, sigma, option_type="call"):
     return option_price
 
 def main():
-    st.title("Black-Scholes Option Pricing Model")
+    st.title("Black-Scholes Pricing Model")
 
-    # Collect input parameters
     with st.sidebar:
         st.header("Input Parameters")
         S = st.number_input("Current Stock Price (S)", value=100.0, step=1.0)
@@ -26,19 +25,14 @@ def main():
         T = st.number_input("Time to Expiration (T in years)", value=1.0, step=0.1)
         r = st.number_input("Risk-Free Interest Rate (r)", value=0.02, step=0.01)
         sigma = st.number_input("Volatility (σ)", value=0.20, step=0.01)
-    
-    # Display input values in a table format
-    st.write("### Current Input Values")
     st.table({
         "Parameter": ["Current Stock Price (S)", "Strike Price (K)", "Time to Expiration (T in years)", "Risk-Free Interest Rate (r)", "Volatility (σ)"],
         "Value": [S, K, T, r, sigma]
     })
     
-    # Calculate option prices
     call_price = black_scholes(S, K, T, r, sigma, "call")
     put_price = black_scholes(S, K, T, r, sigma, "put")
     
-    # Display option prices in card-like format
     st.write("### Option Prices")
     col1, col2 = st.columns(2)
     with col1:
@@ -48,7 +42,6 @@ def main():
         st.subheader("Put Option Price")
         st.metric(label="Put Price", value=f"${put_price:.2f}")
     
-    # PNL calculation
     with st.sidebar:
         st.header("PNL Calculation")
         purchase_price = st.number_input("Option Purchase Price", value=3.0, step=0.1)
