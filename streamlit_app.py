@@ -26,7 +26,7 @@ def main():
         r = st.number_input("Risk-Free Interest Rate (r)", value=0.02, step=0.01)
         sigma = st.number_input("Volatility (σ)", value=0.20, step=0.01)
     st.table({
-        "Parameter": ["Current Stock Price (S)", "Strike Price (K)", "Time to Expiration (T in years)", "Risk-Free Interest Rate (r)", "Volatility (σ)"],
+        "Current Option Price": ["Current Stock Price (S)", "Strike Price (K)", "Time to Expiration (T in years)", "Risk-Free Interest Rate (r)", "Volatility (σ)"],
         "Value": [S, K, T, r, sigma]
     })
     
