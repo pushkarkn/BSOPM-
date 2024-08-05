@@ -26,8 +26,8 @@ def main():
         r = st.number_input("Risk-Free Interest Rate (r)", value=0.02, step=0.01)
         sigma = st.number_input("Volatility (σ)", value=0.20, step=0.01)
     st.table({
-        "Current Option Price": [S], "Strike Price": [k], "Time to Expiration (Years)": [T], "Risk-Free Interest Rate":[r],
-        "Volatility": [sigma]
+        "Parameter": ["Current Stock Price (S)", "Strike Price (K)", "Time to Expiration (T in years)", "Risk-Free Interest Rate (r)", "Volatility (σ)"],
+        "Value": [S, K, T, r, sigma]
     })
     
     call_price = black_scholes(S, K, T, r, sigma, "call")
