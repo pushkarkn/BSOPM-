@@ -16,7 +16,7 @@ def black_scholes(S, K, T, r, sigma, option_type="call"):
     return option_price
 
 def main():
-    st.title("Black-Scholes Option Pricing Model")
+    st.title("Black-Scholes Model")
     
     st.sidebar.header("Input Parameters")
     
