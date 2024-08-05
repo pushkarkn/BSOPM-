@@ -16,41 +16,50 @@ def black_scholes(S, K, T, r, sigma, option_type="call"):
     return option_price
 
 def main():
-    st.title("Black-Scholes Model")
+    st.title("Black-Scholes Option Pricing Model")
+
+    # Collect input parameters
+    with st.sidebar:
+        st.header("Input Parameters")
+        S = st.number_input("Current Stock Price (S)", value=100.0, step=1.0)
+        K = st.number_input("Strike Price (K)", value=105.0, step=1.0)
+        T = st.number_input("Time to Expiration (T in years)", value=1.0, step=0.1)
+        r = st.number_input("Risk-Free Interest Rate (r)", value=0.02, step=0.01)
+        sigma = st.number_input("Volatility (σ)", value=0.20, step=0.01)
     
-    st.sidebar.header("Input Parameters")
+    # Display input values in a table format
+    st.write("### Current Input Values")
+    st.table({
+        "Parameter": ["Current Stock Price (S)", "Strike Price (K)", "Time to Expiration (T in years)", "Risk-Free Interest Rate (r)", "Volatility (σ)"],
+        "Value": [S, K, T, r, sigma]
+    })
     
-    S = st.sidebar.number_input("Current Stock Price (S)", value=100.0, step=1.0)
-    K = st.sidebar.number_input("Strike Price (K)", value=105.0, step=1.0)
-    T = st.sidebar.number_input("Time to Expiration (T in years)", value=1.0, step=0.1)
-    r = st.sidebar.number_input("Risk-Free Interest Rate (r)", value=0.02, step=0.01)
-    sigma = st.sidebar.number_input("Volatility (σ)", value=0.20, step=0.01)
-    
+    # Calculate option prices
     call_price = black_scholes(S, K, T, r, sigma, "call")
     put_price = black_scholes(S, K, T, r, sigma, "put")
     
-    st.write("### Current Input Values")
-    st.write(f"- Current Stock Price (S): {S}")
-    st.write(f"- Strike Price (K): {K}")
-    st.write(f"- Time to Expiration (T in years): {T}")
-    st.write(f"- Risk-Free Interest Rate (r): {r}")
-    st.write(f"- Volatility (σ): {sigma}")
-    
+    # Display option prices in card-like format
     st.write("### Option Prices")
-    st.write(f"Call Option Price: {call_price:.2f}")
-    st.write(f"Put Option Price: {put_price:.2f}")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.subheader("Call Option Price")
+        st.metric(label="Call Price", value=f"${call_price:.2f}")
+    with col2:
+        st.subheader("Put Option Price")
+        st.metric(label="Put Price", value=f"${put_price:.2f}")
     
-    st.sidebar.header("PNL Calculation")
-    
-    purchase_price = st.sidebar.number_input("Option Purchase Price", value=3.0, step=0.1)
-    S_T = st.sidebar.number_input("Stock Price at Expiration (S_T)", value=110.0, step=1.0)
+    # PNL calculation
+    with st.sidebar:
+        st.header("PNL Calculation")
+        purchase_price = st.number_input("Option Purchase Price", value=3.0, step=0.1)
+        S_T = st.number_input("Stock Price at Expiration (S_T)", value=110.0, step=1.0)
     
     call_pnl = max(0, S_T - K) - purchase_price
     put_pnl = max(0, K - S_T) - purchase_price
     
     st.write("### PNL Calculation")
-    st.write(f"Call Option PNL: {call_pnl:.2f}")
-    st.write(f"Put Option PNL: {put_pnl:.2f}")
+    st.write(f"Call Option PNL: ${call_pnl:.2f}")
+    st.write(f"Put Option PNL: ${put_pnl:.2f}")
 
 if __name__ == "__main__":
     main()
