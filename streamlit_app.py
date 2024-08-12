@@ -2,6 +2,7 @@ import streamlit as st
 import math
 from scipy.stats import norm
 
+
 def black_scholes(S, K, T, r, sigma, option_type="call"):
     d1 = (math.log(S / K) + (r + 0.5 * sigma ** 2) * T) / (sigma * math.sqrt(T))
     d2 = d1 - sigma * math.sqrt(T)
@@ -35,10 +36,10 @@ def main():
     
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("CALL Value")
+        st.write("CALL Value")
         st.metric(label="", value=f"${call_price:.2f}")
     with col2:
-        st.subheader("PUT Value")
+        st.write("PUT Value")
         st.metric(label= "", value=f"${put_price:.2f}")
     
     with st.sidebar:
